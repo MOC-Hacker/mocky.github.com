@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher du code C++</title>
+    <!-- Lien vers le style de Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        body {
+            background-color: #777777;
+            color: #fd8f44; 
+            font-family: Arial, sans-serif;
+            position: flex;
+        }
+        h1{
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: #fd8f44;
+        }
+        .bottom-right-link {
+            position: fixed; /* Fixe le lien par rapport à la fenêtre */
+            bottom: 10px;   /* Distance depuis le bas */
+            right: 10px;    /* Distance depuis la droite */
+            background-color: #c96c02; /* Couleur de fond */
+            color: white;   /* Couleur du texte */
+            padding: 10px 15px; /* Espace interne pour un bouton */
+            text-decoration: none; /* Supprime le soulignement */
+            border-radius: 5px; /* Coins arrondis */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+        }
+        pre,code {
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html">
+        <h1>Cours 4</h1>
+    </a>
+    <!-- Section pour le code -->
+    <pre><code class="language-cpp">
+
+//Dans ce cours, nous allons voir structures de répétition (boucles)
+
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+int main()
+{
+	// Les structures de répétition (boucles) permettent de répéter un morceau de code un certain nombre de fois.
+
+	// Boucle while (tant que) :
+    /*Synthaxe d'utilisation : 
+	 while (condition)
+	 {
+	        Instructions à répéter tant que la condition est vraie
+	 }*/
+	/* Remarques :
+	 1- La boucle while a besoin d'un initialisation avant son début et d'une instruction
+	 à l'intérieur qui fera qu'à un moment donné, la condition sera fausse pour ne pas
+	 avoir un programme qui s'exécute à l'infini.
+	 2- La boucle while est plus adaptée aux situations oé on a des combinaisons de
+	 conditions (&& et, || ou) ou encore quand on ne connait pas d'avance le nombre de
+	 répétitions nécessaires.
+
+	// Boucle for (pour) :
+	/*Synthaxe d'utilisation :
+     for(initialisation ; condition ; mise-à-jour condition)
+	 {
+				Instructions à répéter tant que la condition est vraie
+	 }*/
+	/* Remarque :
+	 La boucle for est plus adaptée aux situations ou on connait d'avance le nombre de répétitions nécessaires.*/
+
+	// Boucle do .. while (faire.. tant que) :
+    /*Syntaxe d'utilisation :
+	 do
+	 {
+				Instructions à exécuter tant que la condition est vraie
+	 }while(condition);*/
+	/* Remarque : 
+        Le do-while ressemble beaucoup au while à la différence qu'il s'exécute au moins une fois. Il ne vérifiera la condition qu'aprés.*/
+
+	int entier = 5;
+	float reel = 7.9;
+
+	//////////////////////////////////////////////////////
+	//Exemple : Affichons 5 fois le message : hello world! Avec while :
+	int i = 1; //initialisation de la variable i qui va nous servir de référence
+	while (i <= 5)
+	{
+		cout << "Hello world!" << endl;
+		i++; //Ce qui fait qu'à un moment, la condition va devenir fausse (i > 5)
+	}
+	//Avec for
+	for (int j = 1; j <=5; j++) //On peut lire dans cette condition : Pour j allant de 1 jusqu’à 5 par pas de 1(par ajout de 1)
+	{
+		cout << "Hello world!" << endl;
+	}
+	Avec do-while
+	i = 1;
+	do
+	{
+		cout << "Hello world!" << endl;
+		i++;
+	} while (i<=5);
+
+	//Exercice 1 : Ecrire un programme qui compte de 0 à 20
+        Solution : 
+	for (int compteur = 0; compteur <=20; compteur++) //On peut lire : Pour compteur allant de 0 à 20 par pas de 1(par ajout de 1)
+	{
+		cout << compteur << endl; //Afficher la valeur de la variable compteur
+	}
+	/*Exercice 2 : écrire un programme qui demande à la personne utilisatrice d'enter
+	un nombre entier positif et pair jusqu'à ce qu'elle le fasse.*/
+	//Version 1 avec while
+	int ent;
+	cout << "Veuillez entrer un entier positif et pair" << endl; //On demande à la personne utilisatrice de saisir une entrée paire
+	cin >> ent; //L'utilisateur vas saisir quelque chose
+	while ((ent <= 0) || (ent % 2 != 0)) // Nous allons faire des vérifications qui sont : tant que ce que l'utilisateur saisi un nombre négatif ou tant que ce qu'il a écrit est positif mais que le reste de la division de ce nombre par 2 donne 1
+	{
+		cout << "Veuillez entrer un entier positif et pair" << endl; //Si la condition dans le while n'est pas vérifié, on lui affiche le message pour qu'il resaisi un nombre paire
+		cin >> ent; // Lui laisser écrir encore
+	}
+	//Version 2 avec do-while
+	do //On vas faire les instructions suivantes tant que la condition dans le while n'est pas respectée
+	{
+		cout << "Veuillez entrer un entier positif et pair" << endl; //On demande à la personne utilisatrice de saisir une entrée paire
+		cin >> ent; //L'utilisateur vas saisir quelque chose
+	} while ((ent<=0)||(ent%2!=0));
+	//Version 3 avec un booleen
+	bool pospair = false; //On initialise la variable pospair par false (faux)
+	while (pospair == false)//Tant que pospair reste à faux
+	{
+		cout << "Veuillez entrer un entier positif et pair" << endl; //On demande à la personne utilisatrice de saisir une entrée paire
+		cin >> ent; //L'utilisateur vas saisir quelque chose
+		if ((ent > 0) && (ent % 2 == 0)) //On remarque que la structure de test if se trouve dans le while...
+		{
+			pospair = true; //Quand ce qui est dans la condition du if (Quand le nombre ent est paire), la variable pospair passe à true!!!
+		}
+	}// A la sortie, dans le while, on vera que pospaire est passé à true, donc rien ne s'execute...
+
+	//Exercice 3 : écrire un progrmme qui calcule et affiche la somme des carrés des 50 premiers entiers.
+	//Resultat attendu : 42925
+    //Je vous laisse comprendre ce code
+	int somme = 0;
+	for (int k = 0; k <=50; k++)
+	{
+		somme = somme + pow(k, 2);
+	}
+	cout << "Le resultat de la somme est : " << somme << endl; 
+
+
+	return 0;
+}
+/*Exercice de fin de cours : écrire un programme qui demande à la personne utilisatrice d'entrer
+un entier n positif (répéter jusqu'à ce qu'elle le fasse). Ensuite, afficher un menu
+qui propose de taper 1 si on veut compter jusqu'à cet entier, 2 si on veut calculer
+et afficher la somme des n premiers entiers, 3 si on veut calculer et afficher la
+somme des carrés des n premiers entier ou tout autre touche pour quitter.*/
+    </code></pre>
+    <pre>
+        <code>
+                                                                                                                    UNE SOLUTION POSSIBLE
+            #include &lt;iostream&gt;
+
+            using namespace std;
+
+            int main(){
+
+            
+                int n,choix,som;
+                do
+                {
+                    cout << "Veuillez entrer un entier positif" << endl;
+                    cin >> n;
+                } while (n<=0);
+                    cout << "Pour compter jusqu'a ce nombre, tapez 1" << endl;
+                    cout << "Pour faire la somme des n premiers entiers, tapez 2" << endl;
+                    cout << "Pour faire la somme des carres des n premiers entiers, tapez 3" << endl;
+                    cout << "Tapez tout autre touche pour quitter" << endl;
+                    cin >> choix;
+                switch (choix)
+                {case 1: 
+                    for (int i = 0; i <= n; i++)
+                    {
+                        cout << i << endl;
+                    }
+                    break;
+                case 2:
+                    som = 0;
+                    for (int i = 0; i <= n; i++)
+                    {
+                        som += i;//som=som+i;
+                    }
+                    cout << "La somme des " << n << " premiers entiers est : " << som << endl;
+                    break;
+                case 3:
+                     som = 0;
+                    for (int i = 0; i <= n; i++)
+                    {
+                        som += pow(i,2);//som=som+i*i;
+                    }
+                    cout << "La somme des carres des " << n << " premiers entiers est : " << som << endl;
+                    break;
+                default:
+                    break;
+                }
+            return 0
+                }
+        </code>
+        <a href="./cours3.html">Hésitez pas à revoir le cours précédent!</a>
+        <a href="./cours5.html" class="bottom-right-link">Cours suivant</a>
+    </pre>
+    <!-- Script de Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialiser la coloration syntaxique
+        hljs.highlightAll();
+    </script>
+</body>
+</html>
