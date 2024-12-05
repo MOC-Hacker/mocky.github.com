@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher du code C++</title>
+    <!-- Lien vers le style de Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        body {
+            background-color: #777777;
+            color: #fd8f44; 
+            font-family: Arial, sans-serif;
+            position: flex;
+        }
+        h1{
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: #fd8f44;
+        }
+        .bottom-right-link {
+            position: fixed; /* Fixe le lien par rapport à la fenêtre */
+            bottom: 10px;   /* Distance depuis le bas */
+            right: 10px;    /* Distance depuis la droite */
+            background-color: #c96c02; /* Couleur de fond */
+            color: white;   /* Couleur du texte */
+            padding: 10px 15px; /* Espace interne pour un bouton */
+            text-decoration: none; /* Supprime le soulignement */
+            border-radius: 5px; /* Coins arrondis */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+        }
+        pre,code {
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html">
+        <h1>Cours 2</h1>
+    </a>
+    <!-- Section pour le code -->
+    <pre><code class="language-cpp">
+        //Aujourd’hui, nous allons un peu plus approfondir avec les notions de base
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+int main()
+{   //Autre variables
+	//Type booléen : bool
+	/*Un booleen prend les valeurs true ou false, pour le compilateur faux=0, vrai=n'importe quelle autre valeur(autre que 0)
+	Les boolées servent dans les tests, structures de contréle(que nous verons plus tard), structures de répétition (que nous verrons plus tard)
+	et aussi pour des "flags" qui sont une maniére d'effectuer des vérifications dans un programme*/
+	/*Opérateurs booléens :
+	! : non (négation)
+	&& : et (conjonction)
+	|| : ou (disjonction inclusive)
+	^ : xor (disjonction exclusive) (seulement un des deux est vrai)*/
+	bool unBooleen;
+	//////////////////////////////////////////////////////////////
+	// Type caractére : char
+	// Avant toute chose, retenez qu'un caractére est toujours entre ' '
+	// On peut avoir des chiffres comme caractéres. Seulement, ils ne seront pas considérés comme des entiers
+        /*Quelques fonctions prédéfinies qui pourons vous servir plus tard :
+         isalpha(char) teste si l'argument est une lettre
+	 isdigit(char) teste si l'argument est un chiffre 0-9
+	 islower(char) teste si l'argument est une lettre minuscule
+	 isupper(char) teste si l'argument est une lettre majuscule
+	 Ces fonctions retournent vrai ou faux selon le caract�re qui leur est donn�
+	 tolower(char) pour convertir un caract�re en minuscule
+	 toupper(char) pour convertir un caract�re en majuscule
+        */
+	char c, n;
+	////////////////////////////////////////////////////////
+	// Type chaine de caractéres : string
+	/*Comme son nom l'indique, c'est une chaine de plusieure caractéres... Ce type a un librairie de fonction spécifique.
+	 Pour l'utiliser, on ajoutera #include &lt;string&gt; dans la partie clauses d'inclusion
+	Pour l'affectation
+	 string var="fghjrertyuiopdfghjk";
+	 Chaque cha�ne de caract�res en texte est entre " "*/
+	/*Op�rations
+	 = affectation
+	 + concat�nation (fusion)
+	 Op�rateurs relationnels
+	 == tester l'�galit� de deux string
+	 != tester l'in�galit� de deux string
+	 <,>,<=,>= comparent deux string en se basant sur l'ordre alphab�tique*/
+	/*Quelques fonction prédéfinies qui pourront peut-être vous servir plus tard
+	 append : ajoute à la fin
+	    syntaxe : var1.append(var2);
+	 length ou size : donnent la taille d'un string
+	    syntaxe : var.length() ou var.size()*/
+	string mot1, mot2, motfinal;
+	int ent1, ent2;
+	unBooleen = 0;
+	unBooleen = 1;
+	unBooleen = true;//vrai
+	unBooleen = false;//faux
+	///////////////////////////////////////////////////////
+	c = 'A';
+	n = '2';
+	cout << "Les caracteres sont : " << c << " et " << n << endl;
+    Resultat : Les caracteres sont A et 2
+	cout << isalpha(c) << " " << isdigit(c) << endl;
+    Resultat : 1 0 (Remarque : A la place de 1, on peut avoir n'importe quelle autre valeur)
+	cout << isalpha(n) << " " << isdigit(n) << endl;
+    Resultat : 0 1 (Remarque : A la place de 1, on peut avoir n'importe quelle autre valeur)
+	////////////////////////////////////////////////////////
+	mot1 = "Bonjour ! ";
+	mot2 = "C'est cool la programmation!";
+	motfinal = mot1 + mot2;
+	cout << motfinal << endl;
+    Resultat : Bonjour ! C'est cool la programmation
+	cout << "La longueur du premier mot est : " << mot1.length() << endl;
+    Resultat : La longueur du premier mot est : 9
+	cout << "La longueur du second mot est : " << mot2.size() << endl;
+    Resultat : La longueur du second mot est : 28
+	motfinal.append(" Salut!");
+	//Aprés ajout du mot salut, on obtient
+	cout << "Apres ajout : " << motfinal << endl;
+    Resultat : Apres ajout :  Bonjour ! C'est cool la programmation Salut!
+	/////////////////////////////////////////////////////////////////
+    //jusque là, vous devez vous demander comment faire pour donner nos propres valeurs au variables à la place de leur affecter des valeurs depuis le programme...
+	//Pour récupérer de l'information à partir du clavier, on utilise cin>>Nomvar;
+	//Remarque : le cin lit jusqu'à un espace. Pour des lectures de phrase avec espace, nous verrons au prochain cours comment gérer les espaces.
+	//Remarque : Avant un cin, toujours afficher un petit message à la personne utilisatrice pour indiquer ce qui est attendu.
+    //Petit exemple : 
+	cout << "Veuiller entrer le premier entier" << endl;
+	cin >> ent1;
+    //Le programme va attendre que l'utilisateur saisit une nombre entier et cette valeur sera stocké dans la variable ent1.
+	cout << "Veuillez entrer le second entier" << endl;
+	cin >> ent2;
+	cout << "Les deux entiers que vous avez entres sont : " << ent1 << " et " << ent2 << endl;
+    Resultat : Les deux enteirs que vous avez entres sont 11 et 23 (Par exemple).
+	/*Exercice : écrire un programme qui demande à la personne utilisatrice d'entrer les 
+	mesures d'un rectangle (longueur et largeur), calcule son périmétre et son aire puis l'affiche sur la console*/
+	/*Procédure de résolution :
+	Faire l'inventaire de ce dont on a besoin :
+	-Combien de variables? De quels types?
+	-Formules?
+	-Fonctions?*/
+
+}
+    </code></pre>
+    <pre>
+        <code>
+            //Exemple de code c++ qui affiche la et l'aire d'un triangle en fonction des donnés que l'utilisateur va renseigner.
+            #include &lt;iostream&gt;
+
+            using namespace std;
+
+            int main(){
+	        float base, hauteur, aire;
+                cout << "Veuillez entrer la base du triangle :" << endl;
+                cin >> base;
+                cout << "Veuillez entrer la hauteur du triangle :" << endl;
+                cin >> hauteur;
+                aire = (base * hauteur) / 2;
+                cout << "L'aire du triangle est : " << aire << endl;
+                return 0;
+            }
+            // Aprés avoir éxécuté ce code, le resultat est : 
+            Veuillez entrer la base du triangle :
+            6
+            Veuillez entrer la hauteur du triangle :
+            10
+            L'aire du triangle est : 30
+        </code>
+        <a href="./cours1.html">Hésité pas à revoir le cours précédent</a>
+        <a href="./cours3.html" class="bottom-right-link">Cours suivant</a>
+    </pre>
+    <!-- Script de Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialiser la coloration syntaxique
+        hljs.highlightAll();
+    </script>
+</body>
+</html>

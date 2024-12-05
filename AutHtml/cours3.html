@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher du code C++</title>
+    <!-- Lien vers le style de Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        body {
+            background-color: #777777;
+            color: #fd8f44; 
+            font-family: Arial, sans-serif;
+            position: flex;
+        }
+        h1{
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: #fd8f44;
+        }
+        .bottom-right-link {
+            position: fixed; /* Fixe le lien par rapport à la fenêtre */
+            bottom: 10px;   /* Distance depuis le bas */
+            right: 10px;    /* Distance depuis la droite */
+            background-color: #c96c02; /* Couleur de fond */
+            color: white;   /* Couleur du texte */
+            padding: 10px 15px; /* Espace interne pour un bouton */
+            text-decoration: none; /* Supprime le soulignement */
+            border-radius: 5px; /* Coins arrondis */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+        }
+        pre,code {
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html">
+        <h1>Cours 3</h1>
+    </a>
+    <!-- Section pour le code -->
+    <pre><code class="language-cpp">
+        //Aujourd’hui, nous découvrir la librerie cmath et quelques structures de test
+
+        
+        #define _USE_MATH_DEFINES //permet d'accéder aux constantes prédéfinies de la librairie cmath comme le fameux nombre PI
+        #include &lt;iostream&gt;
+        #include &lt;cmath&gt;
+        using namespace std;
+        
+        int main()
+        {
+            //Quelques fonctions de cmath
+            /*
+             atan(nb) : fonction arctangente
+             cos (nb) : fonction cosinus
+             sin (nb) : fonction sinus
+             pow (nb, exposant) : calcul le nb à la puissance de l'exposant donné
+             sqrt(nb) : calcule la racine carrée du nb
+             int(nb): donne la partie entiére de nb
+             floor(nb) : donne le plus grand entier inférieur ou égal au nb
+             ceil(nb) : donne le plus petit entier supérieur ou égal au nb
+             exp(nb) : calcule l'exponentielle de nb */
+            ///////////////////////////////////////////////////////////////////////////
+            // Structures de test : if-else
+            /*Syntaxe de la version de base :
+             if(condition)
+             {
+            		Instructions à exécuter si la condition est vraie
+             }
+             else
+             {
+            		Instructions à exécuter si la condition est fausse
+             }
+             Version avec plus de cas :
+             if(condition1)
+             {
+            		Instructions à exécuter si la condition1 est vraie
+             }
+             else if(condition2)
+             {
+            		Instructions à exécuter si la condition1 est fausse et la condition2 est vraie
+             }
+             .
+             .
+             .
+             .
+             .
+             .
+             else
+             {
+            		Instructions � ex�cuter si toutes les conditions pr�c�dentes sont fausses
+             }
+            //Et là, vous allez vous dire et si on a plusieurs conditions par exemple 10 conditions, comment on va faire?
+            // Et c'est là qu'entre en jeu la structure de test (switch ou alogorithmiquement parlant : selon...faire)
+            // Syntaxe de switch :
+            /* switch (variable à tester)
+            {
+            	case valeur1 : Groupe d'instructions 1;
+            				   break;
+            	case valeur2 : Groupe d'instructions 2;
+            					break;
+            		.
+            		.
+            		.
+            		.
+            	case valeurn : Groupe d'instructions n;
+            	break;
+            	default : Groupe d'instructions à exécuter si aucune des valeurs ci-dessus ne fonctionne;
+            			  break;
+            }
+            /*Exercice 1 : écrire un programme qui demande à la personne utilisatrice d'entrer un réel
+             et qui calcule son exponnentielle et sa puissance quatriéme et qui les affiche*/
+            Solution : 
+            float nombre, expo, puissance, temperature;
+            cout << "Veuillez entrer un nombre reel" << endl;
+            cin >> nombre;
+            expo = exp(nombre);
+            puissance = pow(nombre, 4);
+            cout << "L'exponnentielle du nombre est : " << expo << " et sa puissance 4e est :" << puissance << endl;
+            cout << "L'exponnentielle du nombre est : " << exp(nombre) << " et sa puissance 4e est :" << pow(nombre, 4) << endl;
+            /*Exercice 2 : écrire un programme qui demande à la personne utilisatrice d'entrer le rayon d'un
+            cercle et qui calcule et affiche la circonférence et l'aire du cercle.*/
+            Solution
+            float rayon;
+            cout << "Veuillez entrer le rayon du cercle" << endl;
+            cin >> rayon;
+            if (rayon >= 0)
+            {
+            	cout << "La circonference du cercle est : " << 2 * M_PI * rayon << endl; // Notez que M_PI est une constantes définie dans la bibliothéque cmath qui représente la valeur de PI
+            	cout << "L'aire du cercle est : " << M_PI * pow(rayon, 2) << endl;
+            }
+            else
+            {
+            	cout << "Erreur! Le rayon ne peut pas etre negatif!" << endl;
+            }
+            /*Exercice 3 : écrire un programme qui demande à la personne utilisatrice d'entrer la température
+            actuelle en degrés. Ensuite, si elle est supérieure ou égale à 30, on affiche qu'il fait
+            vraiment chaud. Si elle est supérieure ou égale à 15 et inférieure à 30, on affiche qu'il fait
+            bon aujourd'hui. Si elle est supérieure ou égale é 0 et inférieure à 15, on affiche qu'il 
+            commence à faire froid. Enfin, si elle est inférieure à 0, on affiche qu'il fait "frette"!*/
+            Solution
+            cout << "Veuillez entrer la temperature en degres" << endl;
+            cin >> temperature;
+            if (temperature >= 30)
+            {
+            	cout << "Il fait vraiment chaud!" << endl;
+            }
+            else if ((temperature >= 15) && (temperature < 30))2e partie de la condition non nécessaire
+            {
+            	cout << "Il fait bon aujourd'hui" << endl;
+            }
+            else if (temperature >= 0)
+            {
+            	cout << "Il commence a faire froid." << endl;
+            }
+            else
+            {
+            	cout << "Il fait \"frette\"!" << endl;
+            }
+
+            return 0;
+        }
+        //Exercice:
+        /*
+        Ecrir un programme c++ qui demande à l'utilisateur de saisir un nombre entre 1 et 12. Ce dernier lui affichage le nom du mois qu'il correspond.
+        Exemple : 3 correspond au mois de Mars
+        */
+    </code></pre>
+    <pre>
+        <code>
+            //Exemple de code c++ qui effectue des opérations selon ce que l'utilisateur lui demande.
+            #include &lt;iostream&gt;
+
+            using namespace std;
+
+            int main(){
+                float reel1, reel2,resultat;
+                int choix;
+                cout << "Veuillez entrer deux nombres reels" << endl;
+                cin >> reel1 >> reel2;
+                cout << "Pour l'addition, tapez 1" << endl << "Pour la soustraction, tapez 2" << endl;
+                cout << "Pour la multiplication, tapez 3" << endl << "Pour la division, tapez 4" << endl;
+                cin >> choix;
+            
+                switch (choix)
+                {
+                case 1: resultat = reel1 + reel2;
+                    cout << "Le resultat de l'addition est  : " << resultat << endl;
+                    break;
+                case 2: resultat = reel1 - reel2;
+                    cout << "Le resultat de la soustraction est : " << resultat << endl;
+                    break;
+                case 3:resultat = reel1 * reel2;
+                    cout << "Le resultat de la multiplication est : " << resultat << endl;
+                    break;
+                case 4: if (reel2 != 0)
+                {
+                    resultat = reel1 / reel2;
+                    cout << "Le resultat de la division est : " << resultat << endl;
+                }
+                      else
+                {
+                    cout << "Impossible de diviser par 0!" << endl;
+                }
+                      break;
+                default: cout << "Veuillez verifier ce que vous avez entre" << endl;
+                    break;
+                }
+        </code>
+        <a href="./cours2.html">Hésité pas à revoir le cours précédent</a>
+        <a href="./cours4.html" class="bottom-right-link">Cours suivant</a>
+    </pre>
+    <!-- Script de Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialiser la coloration syntaxique
+        hljs.highlightAll();
+    </script>
+</body>
+</html>

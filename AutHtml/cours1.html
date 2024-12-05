@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher du code C++</title>
+    <!-- Lien vers le style de Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        body {
+            background-color: #777777;
+            color: #fd8f44; 
+            font-family: Arial, sans-serif;
+            position: flex;
+        }
+        h1{
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: #fd8f44;
+        }
+        .bottom-right-link {
+            position: fixed; /* Fixe le lien par rapport à la fenêtre */
+            bottom: 10px;   /* Distance depuis le bas */
+            right: 10px;    /* Distance depuis la droite */
+            background-color: #c96c02; /* Couleur de fond */
+            color: white;   /* Couleur du texte */
+            padding: 10px 15px; /* Espace interne pour un bouton */
+            text-decoration: none; /* Supprime le soulignement */
+            border-radius: 5px; /* Coins arrondis */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre pour un effet visuel */
+        }
+        pre,code {
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html">
+        <h1>Cours 1</h1>
+    </a>
+    <!-- Section pour le code -->
+    <pre><code class="language-cpp">
+                //Dans ce cours, nous allons voir quelques notions de base à avoir
+                
+        //Ceci est la maniére d'écrire un commentaire sur une ligne (les commentaires s'affichent en vert)
+        /*Ceci est la maniére d'écrire un commentaire
+        sur plusieurs lignes*/
+        //Les commentaires servent à se laisser des mémos et à expliquer son code
+        
+        //La syntaxe pour inclure une librairie est : #include&lt;le nom de la librairie&gt;
+        
+        #include &lt;iostream&gt; //Librairie pour faire de la lecture et écriture (in and out stream)
+                                                                        //(flux entrant et sortant)
+        using namespace std;//On utilise l'espace de noms standard
+        
+        //Fonction principale
+        int main()
+        {
+            /*Déclarations des variables (On déclare des variables qui sont des espaces mémoire
+            réservés par le compilateur)*/
+            /*Syntaxe pour déclarer des variables:
+                typevar  nomvar;
+            ou : 
+                typevar nomvar1,nomvar2,nomvar3; (pour déclarer plusieurs variables qui ont le méme type)*/
+            int entier1, entier2;
+            //-REMARQUE!!!
+            /*Les noms de variables ne peuvent pas:
+             -contenir d'espace
+             -commencer par un chiffre
+             -étre un mot réservé (qui a déjé une signification pour le compilateur)
+             -contenir de caractére spécial */
+            //-L'AFFECTATION:
+            /*L'affectation permet de donner des valeurs aux variables. Exemple : 
+                Nomvar=valeur; */
+            /**************************************************************************/
+            //-LES TYPES DE VARIABLES:
+            /*Types entiers :
+                long (pour les grands entiers):
+                long int
+                short (pour les petits entiers):
+                short int
+                unsigned (pour les entiers positifs):
+                unsigned int
+                Opérateurs arithmétiques :+,-,*,/,%(modulo ou reste de division)
+                Opérateurs relationnels :
+                == pour tester l'égalité de deux variables
+                != pour tester l'inégalité de deux variables
+                >,<,>=,<=
+                Opérateurs unaires
+                var++ opérateur d'incrémentation (équivalent de var=var+1;)
+                var-- opérateur de décrémentation (équivalent de var=var-1;)*/
+                int nb1, nb2, somme;
+            /*Types réels (par ordre croissant d'espace mémoire et de capacité de représentation) :
+                float
+                double
+                long double
+                Opérateurs arithmétiques : +,-,*,/
+                Opérateurs relationnels : <,>,<=,>=
+                On évite d'utiliser == ou != pour tester l'égalité ou l'inégalité de nombres réels.
+                é la place, on teste si la différence entre eux est au-delé d'un certain seuil
+                par exemple 0.0001*/
+                float r1, r2, r3, moyenne;
+            //-Instructions (Manipulation de variables ou autres)
+            cout << "Hello world!" << endl;//Fin de l'instruction
+            /*cout: pour afficher
+            Message/texte à afficher doit étre entre " texte à afficher "
+            endl: pour un saut de ligne*/
+        
+            /*Remarque : Si on a plusieurs erreurs, toujours commencer par essayer de corriger
+            la premiére en partant du haut.
+            Aussi, ne JAMAIS exécuter un programme qui contient des erreurs*/
+            entier1 = 5;
+            entier2 = -7;
+            cout << "Les deux entiers sont: " << entier1 << " et " << entier2 << endl;
+            //resultat : Les deux entier sont: 5 et -7
+            nb1 = 2;
+            nb2 = -27;
+            somme = nb1 + nb2;
+            cout << "La somme est : " << somme << endl;
+            //resultat : La somme est : -25
+            nb1++; //Nous incrémentatont la variable nb1 qui vas passer de 2 à 3
+            cout << "Le premier nombre vaut maintenant : " << nb1 << endl;
+            //resultat : Le premier nombre vaut maintenant : 3
+            nb2--; //Nous décrémentons la variable nb2 qui vas passer de -27 à -28
+            cout << "Le second nombre vaut maintenant : " << nb2 << endl;
+            //resultat : Le second nombre vaut maintenant -28
+            cout << nb1++ << endl;//Postfixe, l'affichage se fait d'abord et l'incrémentation aprés
+            //resultat : 3 (Et la variable nb1 passe à 4)
+            cout << ++nb1 << endl;//Préfixe, l'incrémentation se fait d'abord et l'affichage aprés
+            //resultat : 5 
+            //Dans cette partie, vous allez surement vous poser des quetions... Mais ne vous inquiété pas c'est un peu normal. Si vous n'avait toujours pas compris pourquoi ces valeurs, vous pouvez me contacter via insta ou linked-in
+            r1 = 21.8;
+            r2 = -3.5;
+            r3 = 7.32;
+            moyenne = (r1 + r2 + r3) / 3;
+            cout << "La moyenne des trois reels vaut : " << moyenne << endl;
+            resultat : La moyenne des trois reels vaut : 8,54
+            return 0;//Valeur permettant de vérifier si tout s'est bien passé
+        }
+        //Exercice de fin de cours :
+        /*
+        Ecrir une programme cpp qui contient deux variables a et b qui sont respectivement égale à 12 et 35. 
+        Ce dernier affiche ensuite leur somme, leur produit, la parti entiére de leur division(b par a) et le le reste de leur division(b par a).
+        */
+    </code></pre>
+    <pre>
+        <code>
+            //Exemple de code c++ qui affiche la somme de deux nombre a et b
+            #include &lt;iostream&gt;
+
+            using namespace std;
+
+            int main(){
+                int a = 14, b = -3;
+                cout << "Ce programme permet de faire la somme de deux entier qui sont a et b" << endl;
+                int Somme = a + b;
+                cout << "La somme de " << a << " et " << b << " est " << Somme << endl;
+                return 0;
+            }
+            // Aprés avoir éxécuté ce code, le resultat est : 
+            La somme de 14 et -3 est 11
+        </code>
+        <a href="./cours2.html" class="bottom-right-link">Cours suivant</a>
+    </pre>
+    <!-- Script de Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialiser la coloration syntaxique
+        hljs.highlightAll();
+    </script>
+</body>
+</html>
