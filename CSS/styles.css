@@ -8,24 +8,6 @@ header-content/*  Google Fonts    */
     scroll-padding-top: 2rem;
     box-sizing: border-box;
 }
-/*body{
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(45deg, rgba(241, 136, 6, 0.9), #ffe100, rgba(6, 100, 241, 0.9), #fdfdfe );
-    background-size: 600% 600%;
-    animation: gradient 5s ease infinite;
-}
-@keyframes gradient {
-    0%{
-        background-position: 0% 50%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0% 50%;
-    }
-}*/
 /* variables */
 :root{
     --container-color: #1a1e21;
@@ -97,19 +79,6 @@ header.shadow .logo{
     color: var(--second-color);
 }
 
-.login{
-    padding: 8px 14px;
-    text-transform: uppercase;
-    font-weight: 500;
-    border-radius: 4px;
-    background: var(--second-color);
-    color: var(--bg-color);
-}
-.login:hover{
-    background: hsl(24, 98%, 58%);
-    transition: 0.3s;
-}
-
 /* Home */
 .home{
     width: 100%;
@@ -131,8 +100,8 @@ header.shadow .logo{
     font-weight: 400;
 }
 
-/* Post Filter */
-.post-filter{
+/* cours Filter */
+.cours-filter{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -152,20 +121,20 @@ header.shadow .logo{
     border-radius: 4px;
 }
 
-/*  Posts   */
-.post{
+/*  cours   */
+.cours{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, auto));
     justify-content: center;
     gap: 1.5rem;
 }
-.post-box{
+.cours-box{
     background: var(--bg-color);
     box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
     padding: 15px;
     border-radius: 0.5rem;
 }
-.post-img{
+.cours-img{
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -178,7 +147,7 @@ header.shadow .logo{
     text-transform: uppercase;
     color: var(--second-color);
 }
-.post-title{
+.cours-title{
     font-size: 1.3rem;
     font-weight: 600;
     color: var(--text-color);
@@ -188,18 +157,17 @@ header.shadow .logo{
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-.post-date{
+.cours-nom{
     display: flex;
     font-size: 0.875rem;
     text-transform: uppercase;
     font-weight: 400;
     margin-top: 4px;
 }
-.post-description{
+.cours-description{
     font-size: 0.9rem;
     line-height: 1.5rem;
     margin: 5px 0 10px;
-    /* To remain title in 3 lines*/
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -242,13 +210,13 @@ header.shadow .logo{
     transition: 0.3s all linear;
 }
 
-/* Post Content */
-.post-header{
+/* cours Content */
+.cours-header{
     width: 100%;
     height: 500px;
     background: var(--container-color);
 }
-.post-container{
+.cours-container{
     max-width: 800px;
     margin: auto;
     width: 100%;
@@ -276,13 +244,13 @@ header.shadow .logo{
     object-fit: cover;
     object-position: center;
 }
-.post-content{
+.cours-content{
     margin-top: 13rem !important;
 }
 .sub-heading{
     font-size: 1.2rem;
 }
-.post-text{
+.cours-text{
     font-size: 1rem;
     line-height: 1.7rem;
     margin: 1rem 0;
@@ -314,7 +282,7 @@ header.shadow .logo{
     .nav {
         padding: 14px 0;
     }
-    .post-container{
+    .cours-container{
         margin: 0 auto;
         width: 95%;
     }
@@ -341,15 +309,15 @@ header.shadow .logo{
     .header-img{
         height: 370px;
     }
-    .post-header{
+    .cours-header{
         height: 435px;
     }
-    .post-content{
+    .cours-content{
         margin-top: 9rem !important;
     }
 }
 @media (max-width: 570px) {
-    .post-header{
+    .cours-header{
         height: 390px;
     }
     .header-title{
@@ -375,7 +343,7 @@ header.shadow .logo{
     .home {
         min-height: 300px;
     }
-    .post-box{
+    .cours-box{
         padding: 10px;
     }
     .header-title{
@@ -384,13 +352,13 @@ header.shadow .logo{
     .header-img{
         height: 240px;
     }
-    .post-header{
+    .cours-header{
         height: 355px;
     }
-    .post-content{
+    .cours-content{
         margin-top: 5rem !important;
     }
-    .post-text{
+    .cours-text{
         font-size: 0.875rem;
         line-height: 1.5rem;
         margin: 10px 0;
