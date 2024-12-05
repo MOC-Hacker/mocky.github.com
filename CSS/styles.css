@@ -129,10 +129,14 @@ header.shadow .logo{
     gap: 1.5rem;
 }
 .cours-box{
+    transition: transform 0.3s ease;
     background: var(--bg-color);
     box-shadow: 0 4px 14px hsl(355deg 25% 15% / 10%);
     padding: 15px;
     border-radius: 0.5rem;
+}
+.cours-box:hover {
+    transform: scale(1.05); /* Agrandit légèrement la div (5%) */
 }
 .cours-img{
     width: 100%;
@@ -267,6 +271,7 @@ header.shadow .logo{
 .share-title{
     font-size: 1.1rem;
 }
+
 
 /* Responsive */
 @media (max-width: 1060px) {
