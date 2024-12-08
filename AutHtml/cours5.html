@@ -1,1 +1,201 @@
-indisponible pour le moment... :(
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher du code C++</title>
+    <!-- Lien vers le style de Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        body {
+            background-color: #777777;
+            color: #fd8f44; 
+            font-family: Arial, sans-serif;
+            position: flex;
+        }
+        h1{
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: #fd8f44;
+        }
+        .bottom-right-link {
+            position: fixed; 
+            bottom: 10px;   
+            right: 10px;    
+            background-color: #c96c02; 
+            color: white;   
+            padding: 10px 15px; 
+            text-decoration: none; 
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+        }
+        pre,code {
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html">
+        <h1>Cours 5</h1>
+    </a>
+    <!-- Section pour le code -->
+    <pre><code class="language-cpp">
+        #include &lt;iostream&gt;
+ 
+        using namespace std;
+        
+        //Fonction principale
+        int main()
+        {
+            /*Syntaxe de tableaux
+             Tableau à une dimension:
+                TypeElement NomTab[tailletab];
+                Remarque : En C++, l'indexation commence à 0, donc les numéros des cases d'un
+                tableau vont de 0 à tailletab-1.
+                Pour accéder à un élément d'un tableau, on écrit NomTab[NuméroCase]
+             Tableau à plusieurs dimenstions:
+                TypeElement NomTab[dim1][dim2]...[dimn];
+                Pour accéder à un élément du tableau NomTab[ind1][ind2]...[indn]
+             
+             IMPORTANT : Lors de l'accés à des cases d'un tableau, ne JAMAIS mettre entre []
+             la taille du tableau car on serait en violation d'accés à l'espace mémoire et cela
+             ferait planter le programme.*/
+
+            //Exemple : Tableau de 10 entiers
+            int Tab[10];
+            //Matrice de 4 lignes et 8 colonnes de réels (un tableau à deux dimentions)
+            float Mat[4][8];
+
+            //Mettre la valeur 7 dans la quatriéme case de Tab et l'afficher
+            Tab[3] = 7; // la niéme case d'un tableau est la case n-1
+            cout << "Le quatrieme element du tableau est : " << Tab[3] << endl;
+                Resultat : La quatriéme element du tableau est : 7
+            //Mettre la valeur -8.15 à l'intersection de la deuxiéme ligne et de la cinquiéme colonne de Mat et l'afficher.
+            Mat[1][4] = -8.15;
+            cout << "L'element a la 2eme ligne, 5eme colonne de la matrice est : " << Mat[1][4] << endl;
+                Resultat : Lelement a la 2eme ligne, 5eme colonne de la matrice est : -8.15
+            /*Exercice 1 : écrire un programme qui déclare deux tableaux de 10 entiers chacun.
+            Dans le premier tableau, le contenu de chaque case est égal à son indice+1 (indice=numéro de case).
+            Dans le deuxiéme, on demande à la personne utilisatrice
+            d'entrer les éléments. Ensuite, afficher les deux tableaux.*/
+
+            int Tab1[10], Tab2[10];
+            for (int i = 0; i < 10; i++)
+            {
+                Tab1[i] = i + 1;
+            }
+            for (int i = 0; i < 10; i++)
+            {
+            	cout << "Veuillez entrer l'element a la case " << i + 1 << endl;
+            	cin >> Tab2[i];
+            }
+            cout << "Les éléments du premier tableau sont :" << endl;
+            for (int i = 0; i < 10; i++)
+            {
+            	cout << Tab1[i] << " | ";
+            }
+            cout << endl << "Lee éléments du second tableau sont : " << endl;
+            for (int i = 0; i < 10; i++)
+            {
+            	cout << Tab2[i] << " | ";
+            }
+            cout << endl;
+            /*Exercice 2 : écrire un programme qui déclare une matrice d'entiers de 5 lignes et
+            7 colonnes et met dans chaque case la somme des deux indices. Ensuite, afficher la
+            matrice.*/
+            int Matrice[5][7];
+            cout << "La matrice est :" << endl;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    Matrice[i][j] = i + j;
+                    cout << Matrice[i][j] << " | ";
+                }
+                cout << endl;
+            }
+            /*Exercice 3 : écrire un programme qui recherche une valeur donnée dans un tableau
+            donné. Si la valeur est trouvé, il affiche sa position, sinon, il affiche que la 
+            valeur n'a pas été trouvée.*/
+            bool trouve = false;
+            int val, i = 0;
+            cout << "Veuillez entrer la valeur à chercher : " << endl;
+            cin >> val;
+            //On considére que l'on cherche la valeur dans Tab1 et que le tableau ne contient pas de valeurs en double.
+            while ((i < 10) && (trouve == false))
+            {
+                if (val == Tab1[i])
+                {
+                    trouve = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            if (trouve == true) {
+                cout << "La valeur a ete trouvee a la position " << i << endl;
+            }
+            else
+            {
+                cout << "La valeur n'a pas ete trouvee" << endl;
+            }
+
+            return 0;
+        }            
+        /*Exercice de fin de cours : écrire un programme qui déclare une matrice de réels positifs de
+        5 lignes et 4 colonnes. Chaque ligne correspond à une personne étudiante. Les trois
+        premiéres colonnes contiennent les notes de 3 examens. La derniére colonne est celle
+        de la moyenne. Les programme doit remplir les trois premiéres colonnes avec des
+        saisies manuelles au clavier et remplir la derniére colonne en calculant la moyenne.
+        Ensuite, on affiche la matrice ligne par ligne pour chaque personne étudiante.*/
+    </code></pre>
+    <pre>
+        <code>
+                                                                                                                    UNE SOLUTION :
+            #include &lt;iostream&gt;
+            int main(){
+            float Notes[5][4],somme;
+            for (int i = 0; i < 5; i++)
+            {
+                    somme = 0;
+                    for (int j = 0; j < 3; j++) {
+                        do
+                        {
+                            //Entrée des notes
+                            cout << "Veuillez entrer la note de l'examen " << j + 1 << " de l'etudiant.e " << i + 1 << endl;
+                            cin >> Notes[i][j];
+                        } while ((Notes[i][j] < 0) || (Notes[i][j] > 100));
+                        somme = somme + Notes[i][j];
+                    }
+                    Notes[i][3] = somme / 3;//Moyenne
+                }
+                //Affichage de la matrice des notes
+                for (int i = 0; i < 5; i++)
+                {
+                    cout << "Les notes de l'etudiant.e " << i + 1 << " sont : " << endl;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        cout << Notes[i][j] << " ";
+                    }
+                    cout << " et sa moyenne est : " << Notes[i][3] << endl;
+            }
+            return 0;
+            }
+
+        </code>
+        <a href="./cours5.html">Hésitez pas à revoir le cours précédent!</a>
+        <a href="./cours6.html" class="bottom-right-link">Cours suivant</a>
+    </pre>
+    <!-- Script de Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialiser la coloration syntaxique
+        hljs.highlightAll();
+    </script>
+</body>
+</html>
