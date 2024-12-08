@@ -1,1 +1,344 @@
-indisponible pour le moment... :(
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher du code C++</title>
+    <!-- Lien vers le style de Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        body {
+            background-color: #777777;
+            color: #fd8f44; 
+            font-family: Arial, sans-serif;
+            position: flex;
+        }
+        h1{
+            text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: #fd8f44;
+        }
+        .bottom-right-link {
+            position: fixed; 
+            bottom: 10px;   
+            right: 10px;    
+            background-color: #c96c02; 
+            color: white;   
+            padding: 10px 15px; 
+            text-decoration: none; 
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+        }
+        pre,code {
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html">
+        <h1>Cours 6</h1>
+    </a>
+    <!-- Section pour le code -->
+    <pre><code class="language-cpp">
+        /*Dans ce cours, nous verrons :
+        variables locales, globales, constantes, génération aléatoire,
+        tableaux (suite) et introduction à l'utilisation des fichiers*/
+        
+        #include &lt;iostream&gt;
+        #include &lt;cmath&gt; 
+        #include &lt;cstdlib&gt; //Contient les fonctions srand() et qui rand() qui permettent de générer des nombres aléatoire
+        #include &lt;ctime&gt; // contient la fonction time() nous verrons sont utilié plus tard
+        #include &lt;fstream&gt; //Pour la gestion des fichiers
+        
+        //Syntaxe de définition d'une variable globale
+        //#define nomvar valeur
+        
+        &#35;define nombre 50 //éclaration de la constante nombre qui vaut 50
+        using namespace std;
+        
+        int main()
+        {	
+            /*Une variable globale est accessible et utilisable partout dans le programme alors
+            qu'une variable locale n'est accessible et utilisable que dans une zone particuliére
+            du programme (boucle, fonction, etc.) généralement délimitée par des { }*/
+            int k = 0;
+            //Déclarer une constante : 
+            // const typevar nomvar = valeurvar; TOUJOURS initialiser une constante au moment de sa déclaration
+            const int tailletab = 20;
+            int Tab[tailletab]; 
+            /*De cette façon, on modifiera seulement la valeur de la constante 
+            si on veut effectuer les mémes opérations sur un tableau de taille différente.*/
+            /*for (int i = 0; i < 10; i++)
+            {
+                int j = 0;
+                // instruction à éxécuter
+            }
+            */
+            /*j = j + 1; Cette instruction contient une erreur car j n'est définie qu'à l'intérieur
+            de la boucle for : c'est une variable locale*/
+            /* k = k + 1;Pas d'erreur ici car la variable k n'est pas restreinte à une zone en
+            particulier*/
+            k = k + 1;
+            //////////////////////////////////////////////////////
+
+            //Nous allons voire comment permuter deux nombres entiers
+            int a = 6, b = 17, temp;
+            cout << "Avant permutation, a = " << a << " et b = " << b << endl;
+            temp = a;
+            a = b;
+            b = temp;
+            cout << "Apres permutation, a = " << a << " et b = " << b << endl;
+            /*
+            Qu'avons-nous fais???
+            avant permutation, a valait 6 et b valait 17. Maintenant, nous avons déclaré une variable intermédiaire nommée temp.
+            On affecte à temp la valeur de a pour qu'il nous le garde.
+            Ensuite on donne à a la valeur de b; ainsi a vaut 17 , b vaut 17 et temp vaut 6
+            Puis, on donne à b la valeur temp.
+            En outre, aprés permutation, a vaut 17 et b vaut 6.
+            */
+            /*
+            AUTRE SOLUTION pour economiser de la mémoire : 
+            int a = 6, b = 17;
+            cout << "Avant permutation, a = " << a << " et b = " << b << endl;
+            a = a + b
+            b = a - b;
+            a = a - b;
+            cout << "Apres permutation, a = " << a << " et b = " << b << endl;
+            Qu'avons nous fait???
+            On donne à a sa valeur lui même ainsi que celle de b , donc a contient mathématiquement tout ce dont on a besoin pour ces deux valeurs.
+            Ensuite, b va recevoire a - b. Ce qui veut dire que b va recevoire (a + b) - b ce qui est égale à a.
+            Enfin, a va recevoire a - b ce qui veut dire (a + b) - b, mais vue que b vallait a, alors on a (a + b) - a ce qui est égale à b.
+            */
+            /////////////////////////////////////////////////////
+            // Permutation des éléments d'un tableau
+            //Remplissons d'abord notre tableau
+            for (int i = 0; i < tailletab ; i++)
+            {
+                Tab[i] = 2 * i + 1; //Vous pouvez méttre la formule que vous voullez
+            }
+            //Avant permutation
+            cout << "Tableau avant permutation : " << endl;
+            for (int i = 0; i < tailletab; i++)
+            {
+                cout << Tab[i] << " | ";
+            }
+            //Permutation
+            //On permute la case 0 avec tailletab-1
+            //On permute la case 1 avec tailletab-2
+            //......
+            //On permute la case i avec tailletab-i-1
+            for (int i = 0; i < floor(tailletab/2); i++) //  floor(nb) : donne le plus grand entier inférieur ou égal au nb (cours 1)
+            {
+                temp = Tab[i];
+                Tab[i] = Tab[tailletab - i - 1];
+                Tab[tailletab - i - 1] = temp;
+            }
+            //Apres permutation
+            cout << endl << "Tableau apres permutation" << endl;
+            for (int i = 0; i < tailletab; i++)
+            {
+                cout << Tab[i] << " | ";
+            }
+            cout << endl;
+            //////////////////////////////////////////////////////////
+            //Génération aléatoire
+            srand(time(NULL));//Point de départ du comptage
+            /*La fonction srand(time(NULL)) initialise le générateur de nombres aléatoires avec la valeur renvoyée par time(NULL),
+            assurant ainsi une graine différente à chaque exécution du programme pour produire des séquences de nombres aléatoires variées.
+            La fonction time(NULL) renvoie le nombre de secondes écoulées depuis le 1er janvier 1970*/
+            //Pour générer un nombre aléatoirement, on se sert de la fonction rand() et du modulo
+            //int nb;
+            //nb=rand()%autrenb;
+            //Cela va générer un nombre aléatoire entre 0 et autrenb-1 (le deux inclus).
+            //Exemple : supposons que l'on veuille générer 10 nombres aléatoirement entre 0 et 100.
+            int nb;
+            cout << "Les 10 nombres aleatoires entre 0 et 100 sont : " << endl;
+            for (int i = 0; i < 10; i++)
+            {
+                nb = rand() % 101;
+                cout << nb << endl;
+            }
+            //Exercice 1 : écrire un programme qui génére 10 nombres aléatoirement entre 50 et 120
+            //INDICE : Pour générer un nombre aléatoire entre val1 et val2, générer un nombre aléatoire entre 0 et (val2-va1) puis lui ajouter val1.
+            // SOLUTION : 
+            cout << "Les 10 nombres aleatoires entre 50 et 120 sont : " << endl;
+            for (int i = 0; i < 10; i++)
+            {
+                nb = rand() % (120 - 50 + 1) + 50;
+                cout << nb << endl;
+            }
+            /////////////////////////////////////////////////////////////
+            //Utilisation des fichiers
+            //Pour déclarer un flux d'utilisation de fichiers:
+            //TypeFluxFichier NomFlux;
+            ofstream fichier1;//fichier où on écrit, on stocke de l'information
+            ifstream fichier2;//fichier à partir duquel on lit ou on extrait de l'information
+            fstream fichier3;//fichier où on peut faire de la lecture et/ou de l'écriture
+            //Pour utiliser un fichier, il faut l'ouvrir. Pour ouvrir un fichier :
+            //NomFlux.open("chemin d'accés du fichier ou nom du fichier s'il est dans le même dossier que le .cpp");
+            //Exemple : On mette nos fichiers dans le même dossier
+            fichier1.open("FichierTest.txt");
+            fichier2.open("FichierNotes.txt");
+            fichier3.open("FichierFinal.txt");
+            /*
+            Créez dans le même dosire que le .cpp une ficher Notes.txt contenant quelques nombres entier :)
+            Créez dans le même dosire que le .cpp une ficher Test.txt ne contenant rien :)
+            */
+            /*Avant d'utiliser un fichier, TOUJOURS vérifier que l'ouverture s'est bien déroulée.
+            //COMMENT???
+            if(NomFlux.fail())
+            {
+                cout << "Erreur lors de l'ouverture du fichier (préciser lequel) << endl;
+            }
+            else
+            {
+                Instructions à exécuter dans le cas où tout fonctionne bien.
+            }
+            on peut aussi écrire
+            if(!NomFlux.fail())
+            {
+                Instructions à exécuter dans le cas où tout fonctionne bien.
+            }
+            else
+            {
+                cout << "Erreur lors de l'ouverture du fichier (préciser lequel) << endl;
+            }
+            */
+            if (fichier1.fail())
+            {
+                cout << "Erreur lors de l'ouverture du fichier de test" << endl;
+            }
+            else
+            {
+                //Pour écrire dans un fichier, on procéde exactement comme pour l'écriture sur la console avec cout, il suffit
+                //simplement de remplacer cout par le nom du flux.
+                int nb = -7;
+                fichier1 << "Je me nomme Mocky" << endl;
+                fichier1 << "J'ai ... ans" << endl;
+                fichier1 << "Le nombre entier est : " << nb << endl;
+            }
+            if (fichier2.fail())
+            {
+                cout << "Erreur lors de l'ouverture du fichier de notes (Notes.txt)" << endl;
+            }
+            else
+            {
+                while (!fichier2.eof())//Tant qu'on n'est pas à la fin du fichier (eof = end of file)
+                {
+                    /*Pour lire à partir d'un fichier, on procéde exactement comme pour la lecture à partir du clavier
+                    avec cin, il suffit simplement de remplacer cin par le nom du flux.*/
+                    fichier2 >> nb;
+                    cout << "La note est : " << nb << endl;
+                }
+            }
+            //TOUJOURS fermer un flux associé à un fichier avant la fin du main
+            //COMMENT???
+            //NomFlux.close();
+            fichier1.close();
+            fichier2.close();
+            fichier3.close();
+            return 0;
+        }          
+        /*Exercice de fin de cours : 
+        Ecrir un programme qui va générer 100 nombre aléatoires compris entre 250 et 1000 et les stocker dans un fichier guess.txt.
+        Ensuite, on demande à l'utilisateur de deviner un nombre pour en suite verifier si le nombre a été généré ou pas.
+        Si oui, on lui affiche félicitation, vous vous êtes bon en devinette.
+        Si non, on lui affiche "Allezzzz, faites un effort"
+        */
+    </code></pre>
+    <pre>
+        <code>
+                                                                                                                    UNE SOLUTION :
+            #include &lt;iostream&gt;
+            #include &lt;fstream&gt;
+            #include &lt;cstdlib&gt;
+            #include &lt;ctime&gt;
+
+            using namespace std;
+            int main(){
+                // Initialisation du générateur de nombres aléatoires avec l'heure actuelle
+                srand(time(NULL));
+            
+                // Assurez-vous d'avoir créé un le fichier guess.txt dans le même dossier que le cpp
+                ofstream RemplisssonsIci;
+                RemplisssonsIci.open("gest.txt")
+                if (RemplisssonsIci.fail()) {
+                    cerr << "Impossible d'ouvrir le fichier guess.txt" << endl; //cerr est un flux de sortie en C++ utilisé pour afficher des messages d'erreur ou d'avertissement sur la sortie standard d'erreur 
+                }else{
+                    // Génération de 100 nombres aléatoires et écriture dans le fichier
+                    for (int i = 0; i < 100; ++i) {
+                        int randomNum = rand() % (1000 - 250 + 1) + 250;
+                        RemplisssonsIci << randomNum << endl;
+                    }
+                }
+                // Fermeture du fichier
+                RemplisssonsIci.close();
+            
+                // Demande à l'utilisateur de deviner un nombre
+                int guesss;
+                cout << "Devinez un nombre généré (entre 250 et 1000) : ";
+                cin >> guesss;
+            
+                // Ouverture du fichier pour vérifier si le nombre deviné existe
+                ifstream VerifFile("guess.txt"); 
+                /*
+                Cette syntaxe est la même chose que de faire :
+                ifstream VerifFile;
+                VerifFile.open("guess.txt")
+                */
+                if (!VerifFile) {
+                    cerr << "Impossible d'ouvrir le fichier guess.txt." << endl;
+                    return 1;  // Retourne une erreur si le fichier ne peut pas être ouvert et on va sortir du programme
+                }
+                // Cette partie suivante ne s'éxécute que quand on ne retourne pas d'érreure : quand le ficier est bien ouvert.
+                bool found = false;
+                int number;
+                
+                // Vérification si le nombre deviné est présent dans le fichier
+                while (inputFile >> number) {
+                    if (number == guess) {
+                        found = true;
+                        break;
+                    }
+                }
+            
+                inputFile.close();
+                /*
+                while (inputFile >> number) : Je sais que cette instruction parait bizzard... :)
+                C'est la même chose que de faire : 
+                while(!VerifFile.eof()){
+                    VerifFile >> number;
+                    if{
+                        ...
+                    }
+                }
+                Dans le fond, la condition est que, tant qu'on parvient à lire sur une ligne dans le fichier VerifFile.txt, faire...
+                */
+            
+                // Affichage du résultat
+                if (found) { //Quand fond passe à true
+                    cout << "Félicitations, vous êtes bon en devinette !" << endl;
+                } else { // Quand found est resté a false
+                    cout << "Allezzzz, faites un effort !" << endl;
+                }
+            
+            return 0;
+            }
+            // Si vous voullez aller plus loin, vous pouver poser des condtions et adapter votre code pour que l'on ne sort pas du programme tant que l'on a pas deviné un nombre.
+
+        </code>
+        <a href="./cours5.html">Hésitez pas à revoir le cours précédent!</a>
+        <a href="./cours6.html" class="bottom-right-link">Cours suivant</a>
+    </pre>
+    <!-- Script de Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Initialiser la coloration syntaxique
+        hljs.highlightAll();
+    </script>
+</body>
+</html>
