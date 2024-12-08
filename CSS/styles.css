@@ -79,22 +79,6 @@ header.shadow .logo{
 .logo span{
     color: var(--second-color);
 }
-/* Mode clair */
-.light-mode {
-    background-color: rgb(209, 209, 209);
-}
-/* Mode sombre */
-.dark-mode {
-    background-color: #333;
-}
-.theme-toggle {
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: inherit;
-    margin-left: 20px;
-}
 
 /* Home */
 .home{
